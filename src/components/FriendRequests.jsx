@@ -25,7 +25,7 @@ getFriendRequests()
       one.username.toLowerCase().includes(search.toLowerCase())
     );
   };
-  const handleAcceptRequest=async(friend,id)=>{
+  const handleAcceptRequest=async(id)=>{
     await axios.post("https://tutedude-backend.vercel.app/api/user/acceptfriendRequest",{
       userId:user.userId,
       friendId:id
@@ -58,8 +58,7 @@ getFriendRequests()
             color: "white",
           },
         });
-        setFriendRequests(friendRequests.filter((request)=>request._id!==id
-        ))
+        setFriendRequests(friendRequests.filter((request)=>request._id!==id))
       }
     })
     
@@ -83,12 +82,12 @@ getFriendRequests()
               </div>
               <div className='flex gap-4'>
               <button className="text-white bg-[#4C35DE] rounded sm:px-3 self-center  sm:py-2 px-1 "
-               onClick={()=>handleAcceptRequest(request,request._id)}
+               onClick={()=>handleAcceptRequest(request._id)}
                >
                 Accept
               </button>
               <button className="text-white bg-[#4C35DE] rounded sm:px-3 self-center  sm:py-2 px-1 " 
-              onClick={()=>handleRejectRequest(request,request._id)}
+              onClick={()=>handleRejectRequest(request._id)}
               >
                 Reject
               </button>
